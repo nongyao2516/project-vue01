@@ -1,0 +1,32 @@
+import { createRouter, createWebHistory } from 'vue-router'
+import HomeView from '../views/HomeView.vue'
+
+const routes = [
+  {
+    path: '/',
+    name: 'home',
+    component: HomeView
+  },
+  {
+    path: '/customer',
+    name: 'customer',
+    component: () => import( '../views/Customer.vue')
+  },
+  {
+    path: '/employee',
+    name: 'employee',
+    component: () => import( '../views/Employees.vue')
+  },
+  {
+    path: '/add_customer',
+    name: 'add_customer',
+    component: () => import( '../views/Add_customer.vue')
+  }
+]
+
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
+  routes
+})
+
+export default router
