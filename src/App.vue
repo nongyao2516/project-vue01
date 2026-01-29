@@ -25,7 +25,7 @@
             <li><a class="dropdown-item" href="/product">Product</a></li>
             <li><a class="dropdown-item" href="/sh_product">Show_product</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" href="/popup_product">Popup Product</a></li>
           </ul>
         </li>
         <li class="nav-item">

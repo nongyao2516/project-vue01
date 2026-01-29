@@ -44,6 +44,50 @@
     <div v-if="error" class="alert alert-danger">
       {{ error }}
     </div>
+
+
+<!-- ✅ Modal ใช้ทั้งเพิ่ม/แก้ไข -->
+    <div class="modal fade" id="editModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">{{ isEditMode ? "แก้ไขข้อมูลลูกค้า" : "เพิ่มลูกค้าใหม่" }}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <form @submit.prevent="saveCustomer">
+              <div class="mb-3">
+                <label class="form-label">ชื่อ</label>
+                <input v-model="editCustomer.firstName" type="text" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">นามสกุล</label>
+                <input v-model="editCustomer.lastName" type="text" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">เบอร์โทร</label>
+                <input v-model="editCustomer.phone" type="text" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">ชื่อผู้ใช้</label>
+                <input v-model="editCustomer.username" type="text" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">รหัสผ่าน</label>
+                <input v-model="editCustomer.password" type="password" class="form-control"
+                       :required="!isEditMode"
+                       placeholder="กรอกเฉพาะเมื่อเพิ่มใหม่หรือเปลี่ยนรหัสผ่าน">
+              </div>
+              <button type="submit" class="btn btn-success">
+                {{ isEditMode ? "บันทึกการแก้ไข" : "เพิ่มลูกค้า" }}
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
   </div>
 </template>
 
@@ -56,6 +100,7 @@ export default {
     const customers = ref([]);
     const loading = ref(true);
     const error = ref(null);
+    
 
     // ฟังก์ชันดึงข้อมูลจาก API
     const fetchCustomers = async () => {
