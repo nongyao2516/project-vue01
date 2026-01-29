@@ -19,6 +19,8 @@ if (
 }
 
 try {
+     $method = $_SERVER['REQUEST_METHOD'];
+     if($method === "POST"){
     $sql = "INSERT INTO customers
             (firstName, lastName, phone, username, password)
             VALUES
@@ -37,7 +39,7 @@ try {
         "success" => true,
         "message" => "เพิ่มข้อมูลเรียบร้อย"
     ]);
-
+}
 } catch (PDOException $e) {
     echo json_encode([
         "success" => false,

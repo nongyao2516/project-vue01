@@ -1,14 +1,15 @@
 <?php
 include 'condb.php';
 
-header('Content-Type: application/json');
-
 try {
-    $stmt = $conn->query("SELECT * FROM customers");
-    $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    echo json_encode($datas);
+    $stmt = $conn->prepare("SELECT * FROM customers ORDER BY customer_id DESC");
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    echo json_encode(["success" => true, "data" => $result]);
     
 } catch (PDOException $e) {
     echo json_encode(["error" => $e->getMessage()]);
 }
 ?>
+
+

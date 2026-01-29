@@ -36,6 +36,11 @@ const routes = [
     path: '/sh_product',
     name: 'sh_product',
     component: () => import( '../views/Sh_product.vue')
+  },
+   {
+    path: '/add_product',
+    name: 'add_product',
+    component: () => import( '../views/Add_product.vue')
   }
 ]
 
